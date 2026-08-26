@@ -196,6 +196,7 @@ body {
 
 .image-show-half {
   width: calc(50% - 2.5px);
+  max-width: calc(50% - 2.5px);
   height: auto;
   display: block;
 }
