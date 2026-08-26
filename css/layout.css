@@ -27,7 +27,7 @@ body {
 /* Main Page Layout */
 
 #main-content {
-  margin: 225px 425px;
+  margin: 75px 425px;
   display: flex;
   flex-direction: column;
   gap: 96px;
@@ -182,7 +182,7 @@ body {
     height: auto;
     margin: 0 auto;
     display: block;
-    padding: 50px;
+    padding-top: 20px;
   }
 
 
