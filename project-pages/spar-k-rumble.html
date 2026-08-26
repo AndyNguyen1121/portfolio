@@ -62,6 +62,8 @@
       <nav class="sidebar-nav">
         <a href="#project-background" class="sidebar-link">Project Details</a>
         <a href="#push-boxes" class="sidebar-link">Push Boxes</a>
+        <a href="#combat-system" class="sidebar-link">Combat System</a>
+        <a href="#input-system" class="sidebar-link">Input System</a>
       </nav>
     </div>
     <!-- MAIN PAGE CONTENT -->
@@ -93,19 +95,164 @@
           src="../assets/spar-k-rumble/sparksplash.png"
           style="width: 800px; height: auto;"
           >
+
+          <div id="footer">
+          <a class="icon-link" target="_blank" href="https://kiaranc.itch.io/spar-k-rumble">
+            <image src="../assets/icons/itchio-textless-white.svg" class="footer-icon"/>
+          </a>
+          
+          <a class="icon-link" target="_blank" href="https://github.com/AndyNguyen1121/Project-SKR">
+            <image src="../assets/icons/github-white-icon.svg" class="footer-icon"/>
+          </a>
+          
+          </div>
+
       </div>
 
       <div id="push-boxes">
         <div class="subheader-text">Push Boxes</div>
 
         <div class="body-text">
-          fd
+          Making collisions for a fighting game is very difficult. I learned that lesson the hard way. Unreal Engine's default collision boxes are good for most games, but definitely not
+          fighting games. There are multiple reasons for this.
+          <ul>
+            <li>In typical fighting games (Guilty Gear, Tokon), if a player were to jump and land on another player's head, they should simply pass through each other.</li>
+              <ul>
+                <li>By default, Unreal does not handle that behavior. If the "can step on" boolean is unchecked in the character settings, Unreal applies a small force to the jumping player to push them away, which is not what we're looking for.</li>
+              </ul>
+              
+            <li>Fighting game characters should be able to push each other if one player is not pressing any directional input. If both players are walking towards each other, both players should stop.</li>
+              <ul>
+                <li>Unreal's collision does not perform this behavior out of the box. A quick workaround would be to apply a small translation to the opposing character per frame.</li>
+              </ul>
+
+            <li>If players happen to overlap collision boxes, the game should smoothly push both players away.</li>
+              <ul>
+                <li>Unreal's regular collision simply snaps the players out of each other's collision boxes, creating a jittery experience.</li>
+              </ul>
+          </ul>
         </div>
+
+        <div class="solution-subheader-text">
+          Solution
+        </div>
+
+        <br>
+
+        <div class="body-text">
+          Since the problem is mostly between players, I kept the original colliders on the characters so they could collide with the environment but not with players. 
+          For collisions between players, I attached a trigger collider that I used to program my push boxes.
+        </div>
+
+        <br>
+
+        <div class="body-text">
+          If players were walking into each other, stop their movement completely. If one player moves and the other doesn't, then push the player stationary player by translating their positions.
+        </div>
+
+        <br>
+
+        <div class="body-text">
+          When players moved at high velocities, they could clip through each other because their movement between frames was large enough to bypass the collision check. To solve this, I used the player's velocity to calculate their position the next frame and used a box trace to see if any collisions would occur between those frames.
+        </div>
+
+        <br>
+
+        <div>
+          <video src="../assets/spar-k-rumble/collisionvideo.mp4" class="image-show" loop controls></video> 
+          <span class="image-caption">Yellow box represents push box. Video is slowed down for clarity.</span>
+        </div>
+
+        <div class="code-box">
+  // Small code snippet showcasing how high velocity collisions are resolved
+
+  FVector CurrentLocation = FightingCharacterOwner->GetActorLocation();
+  FVector Velocity = FightingCharacterOwner->GetCharacterMovement()->Velocity;
+  FVector NextLocation = CurrentLocation + (CurrentAttackMoveVelocity * GetWorld()->GetDeltaSeconds() * 0.6f);
+
+  // Sweep from current to next position looking for push boxes
+  FHitResult Hit;
+  FCollisionShape BoxShape = 
+    FCollisionShape::MakeBox(FightingCharacterOwner->PushBox->GetUnscaledBoxExtent());
+
+  FCollisionQueryParams Params;
+  Params.AddIgnoredActor(FightingCharacterOwner);
+  Params.AddIgnoredComponent(FightingCharacterOwner->PushBox);
+
+  if (Velocity.GetSafeNormal().Dot(FightingCharacterOwner->GetDirectionToEnemy()) < 0)
+  {
+    FVector Offset = -FightingCharacterOwner->GetDirectionToEnemy() 
+      * FightingCharacterOwner->PushBox->GetUnscaledBoxExtent().X * 2.f;
+    CurrentLocation += Offset;
+    NextLocation += Offset;
+  }
+
+  bool bHit = GetWorld()->SweepSingleByChannel(
+  Hit,
+  CurrentLocation,
+  NextLocation,
+  FightingCharacterOwner->GetActorQuat(),
+  ECC_GameTraceChannel7,
+  BoxShape,
+  Params);
+
+  if (bHit)
+  {
+    StopAttackMovement();
+    FVector Location = Hit.ImpactPoint;
+    Location.Z = FightingCharacterOwner->GetActorLocation().Z;
+    float Magnitude = (Location - FightingCharacterOwner->GetActorLocation()).Size();
+    FVector Direction = (Location - FightingCharacterOwner->GetActorLocation()).GetSafeNormal();
+    
+    Direction = Direction.Dot(FightingCharacterOwner->GetDirectionToEnemy()) > 0 ? 
+      FightingCharacterOwner->GetDirectionToEnemy() : 
+      -FightingCharacterOwner->GetDirectionToEnemy();
+
+    FightingCharacterOwner->Server_AddActorWorldOffset(FightingCharacterOwner->GetDirectionToEnemy() * Magnitude);
+    Server_SetAttackMoveCancelled(true);;
+  }
+        </div>
+
       </div>
 
+      <div id="combat-system">
+        <div class="subheader-text">Combat System</div>
+        <div class="body-text">
+          Creating multiple fighting game characters can be quite tedious, especially when each character has 30+ attacks. Because of this, I programmed a combat system that allowed
+          my game designer to easily implement attacks and animations without having to touch a line of code. 
+        </div>
 
+        <br>
 
+        <div class="body-text">
+          The combat system utilizes data assets to condense all necessary attack information into one asset that can be reused for multiple characters. 
+          Because of this increased efficiency, my game designer was able to implement an additional character in the span of 2 days.
+        </div>
 
+        <div class="image-row">
+          <img src="../assets/spar-k-rumble/combatsystemdataasset.png" class="image-show-half zoomable">
+          <img src="../assets/spar-k-rumble/hitbox.png" class="image-show-half zoomable">
+        </div>
+
+      </div>
+
+      <div id="input-system">
+        <div class="subheader-text">Input System</div>
+
+         <div class="body-text">
+        I created an input buffer that works in tandem with the data assets that are used for the combat system. 
+        This custom input system records the amount of frames the input has been held, elapsed, and if it has been consumed.
+        It is compatible with both keyboard and gamepads.
+        <br>
+        <br>
+        It also takes in directional inputs based on where the player is facing, allowing players to perform directional attack (back heavy, forward light, etc);
+        </div>
+
+        <div class="image-row">
+          <img src="../assets/spar-k-rumble/inputsystem.png" class="image-show-half zoomable">
+          <img src="../assets/spar-k-rumble/inputoptions.png" class="image-show-half zoomable">
+        </div>
+      </div>
 
 
     </div>
@@ -141,5 +288,9 @@
       </a>
     </div>
 
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img id="lightbox-img" class="lightbox-img" src="">
+    </div>
 	</body>
 </html>

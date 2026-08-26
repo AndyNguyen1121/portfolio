@@ -15,6 +15,11 @@ body {
 .image-caption {
   font-size: 14px;
   font-weight: 500;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
 }
 
 .main-title {
@@ -28,9 +33,44 @@ body {
   padding-bottom: 16px;
 }
 
+.code-box {
+  background-color: #1e1e1e;
+  color: #e8e8e8;
+  padding: 16px 20px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  max-height: calc(1.5em * 15); /* caps visible height at 6 lines */
+  overflow-y: auto;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.solution-subheader-text {
+  font-size: 18px;
+  font-weight: 700;
+  padding-bottom: 0px;
+}
+
 .body-text {
   font-size: 16px;
   font-weight: 500;
+}
+
+.body-text li {
+  margin-bottom: 20px;
+}
+
+.body-text ul {
+  margin-top: 8px;
+  padding-left: 24px; /* indents the bullets - browsers default this low */
+}
+
+.body-text ul ul {
+  margin-top: -12px; /* space before the sub-bullet list starts */
 }
 
 .project-card-text {
