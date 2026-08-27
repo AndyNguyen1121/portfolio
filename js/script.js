@@ -83,10 +83,10 @@ class ProjectCard extends HTMLElement {
         <div class="subheader-text">${title}
           <div id="icon-project">
             ${itchUrl ? `<a class="icon-link" target="_blank" href="${itchUrl}">
-              <image src="./assets/icons/itchio-textless-white.svg" class="regular-icon"/>
+              <image src="./assets/icons/itchio-textless-white.svg" class="footer-icon"/>
             </a>` : ''}
             ${githubUrl ? `<a class="icon-link" target="_blank" href="${githubUrl}">
-              <image src="./assets/icons/github-white-icon.svg" class="regular-icon"/>
+              <image src="./assets/icons/github-white-icon.svg" class="footer-icon"/>
             </a>` : ''}
           </div>
         </div>
