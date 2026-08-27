@@ -28,6 +28,7 @@
      <title>Andy Nguyen's Portfolio</title>
     <meta name="description" content="A portfolio template for the Unemployables community.">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
 
 		<link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/typography.css">
@@ -56,23 +57,20 @@
       </a>
     </div>
 
+    <div id="project-sidebar">
+      <div class="sidebar-header">Features</div>
+      <nav class="sidebar-nav">
+        <a href="#ai-behavior" class="sidebar-link">AI Behavior</a>
+        <a href="#player-mechanics" class="sidebar-link">Player Mechanics</a>
+      </nav>
+    </div>
     <!-- MAIN PAGE CONTENT -->
     <div id="main-content">
 
       <!-- PROJECT HEADER -->
       <div id="project-header">
-          <!-- 
-            TODO
-
-            - Change the 'main-title' text to the name of your project
-            - Change the 'body-text' text to a short and sweet description of your project (maybe the same as the one on the project card)
-            - Change "desktop.jpeg" to the image filename you uploaded in the assets/images folder.
-          -->
-        <div class="main-title">Soulslike Showcase</div>
-        <div class="body-text">A small description about the project goes here, get the reader hooked on the project and tell them why they should continue to read this page. Give it a sweet tagline.</div>
-        <image class="project-header-image" src="../assets/images/desktop.jpeg">
+        <div class="main-title">Souls-like Showcase (Solo)</div>
       </div>
-
       <!-- PROJECT DETAILS -->
       <!-- 
         TODO
@@ -80,57 +78,68 @@
         - Change the 'subheader-text' to whatever header you want for project details
         - Add paragraphs using the <div class="body-text"></div> elements in the "project-details-content"
       -->
-      <div id="project-details">
-        <div class="subheader-text">Project Details / Background</div>
-        <div class="project-details-content">
-          <div class="body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique risus nec feugiat in fermentum. Sed id semper risus in hendrerit gravida. Placerat duis ultricies lacus sed. Id neque aliquam vestibulum morbi blandit cursus risus. Elit pellentesque habitant morbi tristique senectus et netus et. Elementum tempus egestas sed sed risus pretium quam. Nibh ipsum consequat nisl vel pretium lectus quam id leo. Vitae congue mauris rhoncus aenean vel elit.</div>
-          <div class="body-text">Vitae justo eget magna fermentum. Imperdiet nulla malesuada pellentesque elit eget gravida. Aliquet nec ullamcorper sit amet. Aliquet sagittis id consectetur purus. Ac tortor dignissim convallis aenean. Enim neque volutpat ac tincidunt vitae. Lobortis feugiat vivamus at augue. Platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Viverra orci sagittis eu volutpat. Massa tincidunt nunc pulvinar sapien et ligula. Donec enim diam vulputate ut.</div>
-        </div>
+      <div id="project-background">
+        <div class="subheader-text">Project Background</div>
+
+          <div class="body-text">
+            This was my first public project coming into Unreal. To challenge myself, I chose to replicate the gameplay of <i>Dark Souls</i> by making a boss with complex AI behavior and fluid player controls.
+            Through this project, I learned the ins and outs of the engine, gaining experience in blueprints, C++, behavior trees, and Niagara.
+          </div>
+          <iframe width="715" height="402" src="https://www.youtube.com/embed/EFjFrY82Xaw?mute=1" class="video-show" title="Souls Like Showcase - Unreal Engine 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen muted></iframe>
+          <div id="footer">
+          <a class="icon-link" target="_blank" href="https://kiaranc.itch.io/spar-k-rumble">
+            <image src="../assets/icons/itchio-textless-white.svg" class="footer-icon"/>
+          </a>
+          
+          <a class="icon-link" target="_blank" href="https://github.com/AndyNguyen1121/Project-SKR">
+            <image src="../assets/icons/github-white-icon.svg" class="footer-icon"/>
+          </a>
+          
+          </div>
+
       </div>
 
-      <!-- IMAGE GALLERY -->
-      <div id="project-gallery">
-        <!-- TODO - Change the 'subheader-text' to whatever you want the Gallery section header to say -->
-        <div class="subheader-text">Image Gallery</div>
-        <div class="project-gallery-content">
-            <!-- 
-              TODO
+      <div id="ai-behavior">
+        <div class="subheader-text">AI Behavior</div>
+        <div class="body-text">
+          The hardest part of making the boss AI was making sure it used the right attack in the right situation.
+          Upon research, I found out that <i>Dark Souls</i> uses a "Combat Wheel" that helps determine what attack
+          to execute based on the player's state.
 
-              This is where the images in the gallery live. Here's a simple gallery image for you to copy:
+          <br> 
+          <br>
+          With this information, I made my own version of the "Combat Wheel" using the distance from the player as a variable
+          to determine the abilty to execute. To drive the AI behavior, I used a behavior tree to both visualize and fine-tune values.
 
-              Full Width Image:
+          <br> 
+          <br>
+          
+          I created a behavior tree task that contains an array of all available attacks and a numeric weight attached to it.
+          When the AI controller executes the task, it goes through the array and utilizes the weights to randomly choose an ability.
 
-                <div class="gallery-image-container">
-                  <img src="../assets/images/IMAGE_NAME" class="gallery-image">
-                  <span class="image-caption">IMAGE_CAPTION</span>
-                </div>
+          <br> 
+          <br>
 
-              Half Width Image: 
-
-                <div class="gallery-image-container half-width">
-                  <img src="../assets/images/IMAGE_NAME" class="gallery-image">
-                  <span class="image-caption">IMAGE_CAPTION</span>
-                </div>
-
-              - To add an image to the this area, copy one of the above, paste it below this comment, and change the following:
-                  - IMAGE_NAME: the name of the image file in assets/images
-                  - IMAGE_CAPTION: to the caption of the image
-            -->
-            <div class="gallery-image-container half-width">
-              <img src="../assets/images/code.jpeg" class="gallery-image">
-              <span class="image-caption">Give your image a caption. People love context.</span>
-            </div>
-            <div class="gallery-image-container half-width">
-              <img src="../assets/images/sketchbook.jpeg" class="gallery-image">
-              <span class="image-caption">Give your image a caption. People love context.</span>
-            </div>
-            <div class="gallery-image-container">
-              <img src="../assets/images/camera.jpeg" class="gallery-image">
-              <span class="image-caption">Give your image a caption. People love context.</span>
-            </div>
+          As a result, if the enemy AI happens to be far away from the player, it has a higher chance of executing a gap-closer ability.
+          If the enemy is close to the player, then they are more likely to perform close-ranged combo attacks.
         </div>
+
+        <image src="../assets/soulslike/behaviortree.png" class="image-show"></image>
+      </div>
+
+      <div id="player-mechanics">
+        <div class="subheader-text">Player Mechanics</div>
+          <div class="body-text">
+            Player attacks are stored in data assets, where damage, animation, input values, and general information is stored to easily implement combo attacks. This system would be modified to be used in future projects like
+            <a href="./spar-k-rumble.html" style="color: #ffcc00;" >SPAR-K-RUMBLE</a>.
+          </div>
+          <image src="../assets/soulslike/playermechs.png" class="image-show"></image>
+          <br>
       </div>
     </div>
+
+
+
 
     <!-- FOOTER -->
     <div id="footer">
@@ -160,5 +169,9 @@
       </a>
     </div>
 
+    <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img id="lightbox-img" class="lightbox-img" src="">
+    </div>
 	</body>
 </html>

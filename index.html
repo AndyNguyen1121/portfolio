@@ -65,10 +65,7 @@
               <span class="main-title">Hey, I'm @ndoherty_eth.</span>
               <div class="body-text">I’m a freelance designer and developer who aims to help other creatives build out their portfolios, skillset, and businesses.</div>
             </div>
-            <a class="button" id="my-work-link">
-              <span class="button-text">Check out my projects</span> 
-              <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon"/>
-            </a>
+
         </div>
       </div>
 
@@ -92,6 +89,7 @@
         <!-- TODO - Change the subheader-text to whatever you want the Projects section header to say -->
         <span class="subheader-text">My Work / My Projects</span>
 
+        
         <div class="projects-container">
           <!-- 
             TODO
@@ -115,39 +113,42 @@
                 - SMALL_PROJECT_DESCRIPTION: a quick project description (max 4 lines)
                 - PROJECT_PAGE_NAME.html: the html filename for the project (must be in project-pages folder)
           -->
-          <div class="project-card">
-            <img src="./assets/spar-k-rumble/sparksplash.png" class="project-image">
-            <div class="project-card-text-container">
-              <div class="subheader-text project-title">SPAR-K-RUMBLE</div>
-              <div class="body-text project-card-text">Spark and rumble</div>
-            </div>
-            <a class="button" href="./project-pages/spar-k-rumble.html">
-              <span class="button-text">Read More</span>
-              <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon"/>
-            </a>
-          </div>
-          <div class="project-card">
-            <img src="./assets/soulslike/soulslike.png" class="project-image">
-            <div class="project-card-text-container">
-              <div class="subheader-text project-title">Soulslike Showcase</div>
-              <div class="body-text project-card-text">Elit pellentesque habitant morbi tristique senectus et netus et. Elementum tempus egestas sed sed risus pretium quam. Nibh ipsum consequat nisl vel pretium</div>
-            </div>
-            <a class="button" href="./project-pages/soulslike-showcase.html">
-              <span class="button-text">Read More</span>
-              <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon"/>
-            </a>
-          </div>
-          <div class="project-card">
-            <img src="./assets/footik/footik.png" class="project-image">
-            <div class="project-card-text-container">
-              <div class="subheader-text project-title">Capstone - In Progress</div>
-              <div class="body-text project-card-text">Elit pellentesque habitant morbi tristique senectus et netus et. Elementum tempus egestas sed sed risus pretium quam. Nibh ipsum consequat nisl vel pretium</div>
-            </div>
-            <a class="button" href="./project-pages/capstone.html">
-              <span class="button-text">Read More</span>
-              <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon"/>
-            </a>
-          </div>
+          <project-card
+            image="./assets/spar-k-rumble/sparksplash.png"
+            title="SPAR-K-RUMBLE"
+            description="Fighting game made in Unreal Engine 5 (C++)."
+            page-url="./project-pages/spar-k-rumble.html"
+            itch-url="https://kiaranc.itch.io/spar-k-rumble"
+            github-url="https://github.com/AndyNguyen1121/Project-SKR">
+          </project-card>
+
+          <project-card
+            image="./assets/soulslike/soulslike.png"
+            title="Souls-like Showcase"
+            description="Made in Unreal Engine 5 (C++, Blueprints)."
+            page-url="./project-pages/soulslike-showcase.html"
+            itch-url="https://skyglader.itch.io/souls-like-showcase"
+            github-url="https://github.com/AndyNguyen1121/UnrealSoulslike">
+          </project-card>
+
+          <project-card
+            image="./assets/footik/footik.png"
+            title="Foot IK"
+            description="A demo project made in Unity."
+            page-url="./project-pages/foot-ik.html"
+            itch-url="https://skyglader.itch.io/footik-showcase-realistic-foot-placements"
+            github-url="https://github.com/AndyNguyen1121/MovementTestMain">
+          </project-card>
+
+          <project-card
+            image="./assets/scindara/scindaralogo.png"
+            title="Scindara"
+            description="A hack and slash game made in Unity."
+            page-url="./project-pages/scindara.html"
+            itch-url="https://skyglader.itch.io/scindara"
+            github-url="https://github.com/AndyNguyen1121/hack-and-slash-prototype-2025">
+          </project-card>
+
         </div>
       </div>
     </div>

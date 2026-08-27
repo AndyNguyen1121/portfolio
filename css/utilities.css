@@ -12,6 +12,11 @@
   height: 20px;
 }
 
+.regular-icon {
+    width: 20px;
+    height: 20px;
+}
+
 a.icon-link {
   transition: transform 200ms ease-in-out;
 }
@@ -87,6 +92,11 @@ a.button:hover {
   gap: 16px;
 }
 
+#icon-project {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
 /* Link Styling */
 a.no-underline {
   text-decoration: none;

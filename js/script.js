@@ -52,13 +52,52 @@ if (sidebarLinks.length > 0) {
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightbox-img");
 
-document.querySelectorAll(".zoomable").forEach(img => {
-  img.addEventListener("click", () => {
-    lightboxImg.src = img.src;
-    lightbox.classList.add("active");
+if (lightbox && lightboxImg) {
+  document.querySelectorAll(".zoomable").forEach(img => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.add("active");
+    });
   });
-});
 
-lightbox.addEventListener("click", () => {
-  lightbox.classList.remove("active");
-});
+  lightbox.addEventListener("click", () => {
+    lightbox.classList.remove("active");
+  });
+}
+
+class ProjectCard extends HTMLElement {
+  connectedCallback() {
+    const image = this.getAttribute('image');
+    const title = this.getAttribute('title');
+    const itchUrl = this.getAttribute('itch-url');
+    const githubUrl = this.getAttribute('github-url');
+    const description = this.getAttribute('description');
+    const pageUrl = this.getAttribute('page-url');
+
+    // Apply the card's styling class directly to the custom element itself
+    this.classList.add('project-card');
+
+    this.innerHTML = `
+      <img src="${image}" class="project-image">
+      <div class="project-card-text-container">
+        <div class="subheader-text">${title}
+          <div id="icon-project">
+            ${itchUrl ? `<a class="icon-link" target="_blank" href="${itchUrl}">
+              <image src="../assets/icons/itchio-textless-white.svg" class="regular-icon"/>
+            </a>` : ''}
+            ${githubUrl ? `<a class="icon-link" target="_blank" href="${githubUrl}">
+              <image src="../assets/icons/github-white-icon.svg" class="regular-icon"/>
+            </a>` : ''}
+          </div>
+        </div>
+        <div class="body-text project-card-text">${description}</div>
+      </div>
+      <a class="button" href="${pageUrl}">
+        <span class="button-text">Read More</span>
+        <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon"/>
+      </a>
+    `;
+  }
+}
+
+customElements.define('project-card', ProjectCard);

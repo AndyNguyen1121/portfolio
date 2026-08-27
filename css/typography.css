@@ -28,9 +28,13 @@ body {
 }
 
 .subheader-text {
-  font-size: 20px;
-  font-weight: 700;
-  padding-bottom: 16px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    font-size: 20px;
+    font-weight: 700;
+    padding-bottom: 16px;
 }
 
 .code-box {

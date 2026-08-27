@@ -58,7 +58,7 @@ body {
 
 #portfolio-header-text-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 34px;
   flex-basis: 50%;
 }
@@ -103,7 +103,7 @@ body {
       max-width: calc((100% - 32px) / 3);
       display: flex;
       flex-direction: column;
-      gap: 34px;
+      gap: 10px;
     }
 
     .project-card-text-container {
@@ -186,6 +186,14 @@ body {
     flex-direction: row;
   }
 
+  .video-show {
+    margin: 0 auto;
+    display: block;
+    padding-top: 20px;
+    flex-direction: row;
+  }
+
+
 .image-row {
   display: flex;
   gap: 5px;
@@ -200,6 +208,15 @@ body {
   height: auto;
   display: block;
 }
+
+.image-show-small {
+    width: 30%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    padding-top: 20px;
+    flex-direction: row;
+  }
 
 /* Extra Extra large devices (large laptops and desktops, 1200px and below) */
 @media only screen and (max-width: 1600px) {
