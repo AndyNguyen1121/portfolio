@@ -1,0 +1,127 @@
+
+
+<!-- 
+  IMPORTANT! 
+  
+  Keep this file unchanged to use as a template for all future project pages. 
+
+  For every new project you add to your portfolio, make a copy of this file in the
+  'project-pages' folder with a name related to the project.
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+    <!-- 
+      TODO
+
+      Upload your Unemployable (or whatever photo you like) to the assets/images folder
+      and change the name of the image below to match the uploaded one
+
+      Change the title in the <title> tag to whatever you would like the title of your portfolio to be
+
+      This should be the same across all pages.
+     -->
+     <link rel="icon" href="../assets/images/1311.png" />
+     <title>Andy Nguyen's Portfolio</title>
+    <meta name="description" content="A portfolio template for the Unemployables community.">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+
+		<link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/typography.css">
+    <link rel="stylesheet" href="../css/utilities.css">
+
+		<script defer src="../js/script.js"></script>
+	</head>
+	<body>
+    <!-- NAVBAR -->
+    <div class="navbar">
+      <a class="nav-title-link" href="../index.html">
+        <!-- 
+          TODO - Change the "Portfolio Title" to whatever you want displayed in the top left
+
+          (this should be the same across all pages)
+         -->
+        <span class="nav-title">Andy Nguyen</span>
+        <!-- 
+          TODO - Change the email after 'mailto:' to your email address for contact 
+        
+          (this should be the same across all pages)
+        -->
+        <a class="button" href="./contact.html">
+          <span class="button-text">Contact Me</span>
+        </a>
+      </a>
+    </div>
+
+      <div id="project-sidebar">
+      <div class="sidebar-header">Contributions</div>
+      <nav class="sidebar-nav">
+        <a href="#project-background" class="sidebar-link">Project Details</a>
+        <a href="#weapon-switching" class="sidebar-link">Weapons</a>
+        <a href="#character-movement" class="sidebar-link">Character Movement</a>
+      </nav>
+    </div>
+
+    <!-- MAIN PAGE CONTENT -->
+    <div id="main-content">
+
+      <!-- PROJECT HEADER -->
+      <div id="project-header">
+        <div class="main-title">Second Wind</div>
+      </div>
+
+      <!-- PROJECT DETAILS -->
+      <!-- 
+        TODO
+
+        - Change the 'subheader-text' to whatever header you want for project details
+        - Add paragraphs using the <div class="body-text"></div> elements in the "project-details-content"
+      -->
+      <div id="project-background">
+        <div class="subheader-text">Project Details</div>
+
+          <div class="body-text">
+            This rogue-like game was made during a 2 day game jam at UCI. This project was created by a team of 8 students.
+          </div>
+          <img src="../assets/secondwind/second-wind-titlecard.png" class="image-show">
+            
+          <div id="footer">
+          <a class="icon-link" target="_blank" href="https://fatsorulez.itch.io/second-wind">
+            <image src="../assets/icons/itchio-textless-white.svg" class="footer-icon"/>
+          </a>
+          
+          <a class="icon-link" target="_blank" href="https://github.com/AndyNguyen1121/ZotJam">
+            <image src="../assets/icons/github-white-icon.svg" class="footer-icon"/>
+          </a>
+          
+          </div>
+
+      </div>
+
+      <div id="weapon-switching">
+        <div class="subheader-text">Weapons</div>
+        <div class="body-text">
+          I created a modular weapon system with scriptable objects that allowed the team to easily create new weapons within a short amount of time. By the end of the jam, our team was able to produce 5+ different weapons. Each with varying characteristics.
+        </div>
+      <video src="../assets/secondwind/weapon-switching.mp4" class="image-show" loop controls></video> 
+      </div>
+
+      <div id="character-movement">
+        <div class="subheader-text">Character Movement</div>
+        <div class="body-text">
+            The movement in this project is inspired by the modern <i>Doom</i> titles. The fast-paced and snappy movement intensifies gameplay and makes the player feel powerful.
+        </div>
+         <video src="../assets/secondwind/snappy-movement.mp4" class="image-show" loop controls></video> 
+      </div>
+
+     <div id="lightbox" class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <img id="lightbox-img" class="lightbox-img" src="">
+      </div>
+    </div>
+	</body>
+</html>

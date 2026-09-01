@@ -94,7 +94,7 @@ class ProjectCard extends HTMLElement {
       </div>
       <a class="button" href="${pageUrl}">
         <span class="button-text">Read More</span>
-        <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon"/>
+        <image src="./assets/icons/Arrow_White_Short_east.svg" class="right-arrow-icon"/>
       </a>
     `;
   }
