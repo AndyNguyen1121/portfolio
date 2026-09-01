@@ -212,6 +212,13 @@ body {
   display: block;
 }
 
+.image-show-pic {
+  width: calc(25% - 2.5px);
+  max-width: calc(50% - 2.5px);
+  height: auto;
+  display: block;
+}
+
 .image-show-small {
     width: 30%;
     height: auto;
@@ -266,6 +273,11 @@ body {
   .projects-container {
     grid-template-columns: 1fr;
   }
+}
+.highlight {
+  background-color: #121212;
+  color: #ffffff;
+  border-radius: 3px;
 }
 
 /* Sidebar Table of Contents */
